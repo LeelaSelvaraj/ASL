@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aadith Software Labs | Visionary IT Infrastructure</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#00687a",
+                    "outline-variant": "#bcc9cd",
+                    "surface-container": "#eceef0",
+                    "on-surface": "#191c1e",
+                    "on-secondary-container": "#fefcff",
+                    "on-primary-container": "#00424f",
+                    "surface": "#f7f9fb",
+                    "on-background": "#191c1e",
+                    "surface-container-high": "#e6e8ea",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-variant": "#e0e3e5",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "secondary-fixed": "#dbe1ff",
+                    "tertiary-fixed-dim": "#bec6e0",
+                    "on-surface-variant": "#3d494c",
+                    "tertiary-container": "#9ea6bf",
+                    "surface-container-low": "#f2f4f6",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "primary": "#00687a",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed": "#131b2e",
+                    "surface-dim": "#d8dadc",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary-fixed": "#001f26",
+                    "on-error": "#ffffff",
+                    "outline": "#6d797d",
+                    "on-primary-fixed-variant": "#004e5c",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#316bf3",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#acedff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#565e74",
+                    "on-secondary-fixed": "#00174b",
+                    "primary-container": "#06b6d4",
+                    "background": "#f7f9fb",
+                    "inverse-primary": "#4cd7f6",
+                    "primary-fixed-dim": "#4cd7f6",
+                    "inverse-surface": "#2d3133",
+                    "tertiary-fixed": "#dae2fd",
+                    "on-tertiary-container": "#343c50",
+                    "on-error-container": "#93000a",
+                    "secondary": "#0051d5",
+                    "on-tertiary-fixed-variant": "#3f465c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-desktop": "80px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "section-gap": "120px",
+                    "stack-md": "16px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Hanken Grotesk"],
+                    "display-hero": ["Hanken Grotesk"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-mono": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-hero": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["30px", {"lineHeight": "38px", "fontWeight": "600"}],
+                    "label-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .cyan-blue-gradient {
+            background: linear-gradient(45deg, #06b6d4, #2563EB);
+        }
+        .tinted-shadow {
+            box-shadow: 0 30px 60px -12px rgba(37, 99, 235, 0.08);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(200%) skewX(-15deg); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%) skewX(-15deg);
+        }
+
+        .shimmer-effect:hover::after {
+            animation: shimmer 0.8s ease-in-out;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in-up, .reveal, .shimmer-effect:hover::after {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #00687a; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/60 dark:bg-black/60 backdrop-blur-md border-b border-white/40 shadow-[0_20px_50px_rgba(37,99,235,0.08)]">
+<div class="flex justify-between items-center max-w-[1280px] mx-auto px-margin-desktop py-4">
+<div class="flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform duration-200"><img alt="Aadith Software Labs Logo" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTyTEPHeI1dtDEZSJ0VsP7jvOL1s3m2Q_AIkLU4Ky5IgD7kTahYGL5xaLDHDE8ikh5JYE6NyaMLZzTWx76ZH_WY3uOECTs-Bn6RhdeNq9ok0aEit7Rzm390sfZoI5HfsvVjGktO6yypodsuKdbS8qr_D0FzEw3OAQKAZrttc1YaCb5xb96MkfRW9eC1iQEiYJ4SpPifdy3F2mX4RGX5SKfInSs1Qn4-3iydTC7kBzAepqI_iDLuAxfNDLgeak3qj_cOUw5gHKs5Eo"/>
+<span class="font-headline-lg text-2xl text-[#06b6d4] tracking-tight whitespace-nowrap">Aadith Software Labs</span>
+</div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<a class="text-secondary font-semibold border-b-2 border-secondary font-body-md text-body-md cursor-pointer transition-all ease-in-out" href="#services">Solutions</a>
+<a class="text-on-surface hover:text-primary font-body-md text-body-md cursor-pointer transition-all ease-in-out" href="#">Platform</a>
+<a class="text-on-surface hover:text-primary font-body-md text-body-md cursor-pointer transition-all ease-in-out" href="#contact">Contact Us</a>
+<a class="text-on-surface hover:text-primary font-body-md text-body-md cursor-pointer transition-all ease-in-out" href="#about">Company</a>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Visionary Hero Section -->
+<section class="relative min-h-[90vh] flex items-center overflow-hidden bg-white" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_hJcLJ_zktmjk6ZEZ3-5IA0NRg2FuOjfEFl4WrbWX6TFo64OQ-eTtDn0JP1y4t59YhCfdWyUcxE26xGS3Selx4alU_RKsEFq30XRY1eWPJbKoL9k8AWWLjO8e5wMXFs01mugVAnpLCY9maut4jQJzfXq7weWjGWq0ORLElZoRBYyDhKqBL16EVrdfPCRDoejhttFFAzgSehxzhO6y8XgnlFv0JZVCnPb_d9lkVZlqI6vJGIppfuIozyy6uig3ndqX719JCFi5-j4'); background-size: cover; background-position: center;"><div class="absolute inset-0 bg-black/40 z-0"></div>
+<div class="max-w-[1280px] mx-auto px-margin-desktop gap-gutter relative z-10 items-center flex flex-col justify-center">
+<div class="space-y-stack-lg">
+<div class="inline-flex items-center gap-2 bg-secondary-fixed px-4 py-1.5 text-on-secondary-fixed font-label-mono text-label-mono uppercase tracking-wider opacity-0 animate-fade-in-up" style="animation-delay: 0.1s;">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+                        Next-Gen Infrastructure
+                    </div>
+<h1 class="font-display-hero text-display-hero text-on-surface leading-tight text-white opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+                        Pioneering the <span class="cyan-blue-gradient text-primary-fixed">Digital Frontier</span>
+</h1>
+<p class="font-body-lg text-body-lg max-w-[540px] text-white/90 opacity-0 animate-fade-in-up" style="animation-delay: 0.3s;">
+                        Aadith Software Labs delivers hyper-scale performance and uncompromised clarity for the world's most demanding enterprise environments.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Who We Are Section -->
+<section class="py-section-gap bg-surface-container-lowest reveal active" id="about">
+<div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 relative flex items-center">
+<img alt="Global technology network visualization" class="w-full transition-all duration-700 shadow-xl border-l-8 border-primary min-h-[300px] object-contain aspect-[1536/1024] bg-transparent" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTQfmMBjo-p7lowjyEQFVScBdrOsYBmJM_kHJ5mtL5IWch9PBrR4fXXCwMXNADhxSlmGgz2GvUIX1RKzv0SNmTQPUEFezjnMk3oYkBDNZjxif0Albg-C_wbOlCYoYRqCkYsefKxl22ueutXgr1US9CmCDfl8cTzbeqk6EGCictPAZV4F7a9sOgCxiMDwAOhUulwrHlI-HTvdkFZrQH1bEVxxzubtKf_9T52tEjbqAtuwxQAO8bsweVJasBh6qq5a8LYxRlC6hr4IY"/>
+<div class="absolute -bottom-6 -right-6 w-32 h-32 cyan-blue-gradient -z-10 hidden md:block"></div>
+</div>
+<div class="md:col-span-7">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-stack-lg mt-stack-lg md:mt-0">Who We Are</h2>
+<div class="space-y-stack-md text-on-surface-variant font-body-lg">
+<p class="">
+                            Aadith Software Labs is a premier technology consulting firm dedicated to transforming complex challenges into elegant digital solutions. We specialize in architecting high-performance systems that empower enterprise leaders to innovate with confidence and precision.
+                        </p>
+<p class="">
+                            Our team of visionary engineers and strategists brings decades of collective expertise in infrastructure scaling, cloud native architecture, and digital transformation.
+                        </p>
+</div>
+<footer class="mt-stack-lg pt-stack-md border-t border-outline-variant italic text-on-surface-variant/80 font-body-md">
+                        * Our consulting partners are globally certified experts in mission-critical IT environments.
+                    </footer>
+</div>
+</div>
+</section>
+<!-- Our Services Section -->
+<section class="py-section-gap bg-surface relative overflow-hidden" id="services">
+<div class="max-w-[1280px] mx-auto px-margin-desktop">
+<div class="mb-section-gap text-center max-w-[800px] mx-auto reveal active">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-stack-md">Engineered Excellence</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                        Specialized vertical solutions designed to bridge the gap between technical complexity and business velocity.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-gutter"><!-- Service 1 -->
+<div class="glass-card p-stack-lg border-t-4 border-primary tinted-shadow hover:-translate-y-2 transition-all duration-300 reveal shimmer-effect active" style="transition-delay: 0.1s;">
+<span class="material-symbols-outlined text-primary text-[40px] mb-stack-md" style="transform: scale(1) rotate(0deg); transition: transform 0.3s;">code</span>
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface mb-stack-md">Software Development</h3>
+<p class="text-on-surface-variant text-body-md">Architecting robust, scalable backends and fluid frontends using modern stacks.</p>
+</div>
+<!-- Service 2 -->
+<div class="glass-card p-stack-lg border-t-4 border-secondary-container tinted-shadow hover:-translate-y-2 transition-all duration-300 reveal shimmer-effect active" style="transition-delay: 0.2s;">
+<span class="material-symbols-outlined text-secondary-container text-[40px] mb-stack-md" style="transform: scale(1) rotate(0deg); transition: transform 0.3s;">verified_user</span>
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface mb-stack-md">Quality Engineering</h3>
+<p class="text-on-surface-variant text-body-md">Automated testing and rigorous QA protocols ensuring zero-defect deployments.</p>
+</div>
+<!-- Service 3 -->
+<div class="glass-card p-stack-lg border-t-4 border-primary tinted-shadow hover:-translate-y-2 transition-all duration-300 reveal shimmer-effect active" style="transition-delay: 0.3s;">
+<span class="material-symbols-outlined text-primary text-[40px] mb-stack-md" style="transform: scale(1) rotate(0deg); transition: transform 0.3s;">campaign</span>
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface mb-stack-md">Digital Marketing</h3>
+<p class="text-on-surface-variant text-body-md">Data-driven growth strategies and technical SEO for the digital ecosystem.</p>
+</div>
+<!-- Service 4 -->
+<div class="glass-card p-stack-lg border-t-4 border-secondary-container tinted-shadow hover:-translate-y-2 transition-all duration-300 reveal shimmer-effect md:col-start-1 lg:col-start-auto active" style="transition-delay: 0.4s;">
+<span class="material-symbols-outlined text-secondary-container text-[40px] mb-stack-md" style="transform: scale(1) rotate(0deg); transition: transform 0.3s;">vibration</span>
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface mb-stack-md">Mobile Application</h3>
+<p class="text-on-surface-variant text-body-md">High-performance native and cross-platform experiences for global users.</p>
+</div>
+<!-- Service 5 -->
+<div class="glass-card p-stack-lg border-t-4 border-primary tinted-shadow hover:-translate-y-2 transition-all duration-300 reveal shimmer-effect active" style="transition-delay: 0.5s;">
+<span class="material-symbols-outlined text-primary text-[40px] mb-stack-md" style="transform: scale(1) rotate(0deg); transition: transform 0.3s;">cloud_done</span>
+<h3 class="font-headline-md text-[20px] leading-tight text-on-surface mb-stack-md">Cloud Services</h3>
+<p class="text-on-surface-variant text-body-md">Next-gen cloud migration, serverless architecture, and 24/7 reliability.</p>
+</div></div>
+</div>
+</section>
+<!-- CTA Section / Contact Us -->
+<section class="py-section-gap reveal active" id="contact">
+<div class="max-w-[1280px] mx-auto px-margin-desktop">
+<div class="cyan-blue-gradient p-12 flex flex-col md:flex-row items-center justify-between gap-stack-lg tinted-shadow">
+<div class="text-white">
+<h2 class="font-headline-lg text-headline-lg mb-2">Contact Us</h2>
+<p class="text-white/80 text-body-lg">Let's build the future of your infrastructure together. Reach out to our team of specialists.</p><div class="flex flex-wrap gap-x-8 gap-y-2 mt-4 text-white/90">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+<a class="font-body-md hover:underline" href="mailto:contact@aadith.com">contact@aadith.com</a>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">phone</span>
+<a class="font-body-md hover:underline" href="tel:+15551234567">+1 (555) 123-4567</a>
+</div>
+</div>
+</div>
+<button class="bg-white text-primary px-10 py-5 font-extrabold text-xl hover:bg-surface-container transition-colors shadow-2xl">
+                        Get in Touch
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-surface-container-lowest border-t border-outline-variant">
+<div class="max-w-[1280px] mx-auto px-margin-desktop border-outline-variant/30 flex flex-col items-center gap-4 text-center"><div class="flex flex-col items-center gap-4 mb-4"><div class="flex items-center gap-3"><img alt="Aadith Software Labs Logo" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTyTEPHeI1dtDEZSJ0VsP7jvOL1s3m2Q_AIkLU4Ky5IgD7kTahYGL5xaLDHDE8ikh5JYE6NyaMLZzTWx76ZH_WY3uOECTs-Bn6RhdeNq9ok0aEit7Rzm390sfZoI5HfsvVjGktO6yypodsuKdbS8qr_D0FzEw3OAQKAZrttc1YaCb5xb96MkfRW9eC1iQEiYJ4SpPifdy3F2mX4RGX5SKfInSs1Qn4-3iydTC7kBzAepqI_iDLuAxfNDLgeak3qj_cOUw5gHKs5Eo"/><span class="font-headline-lg text-xl text-[#06b6d4] tracking-tight whitespace-nowrap">Aadith Software Labs</span></div></div>
+<p class="text-on-surface-variant font-body-md text-sm">© 2026 Aadith Software Labs Infrastructure. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Micro-interaction for service cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.transform = 'scale(1.2) rotate(5deg)';
+                    icon.style.transition = 'transform 0.3s ease';
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                }
+            });
+        });
+
+        // Sticky Nav logic
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-xl', 'bg-white/90');
+            } else {
+                nav.classList.remove('shadow-xl', 'bg-white/90');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Once animated, we can unobserve if we only want it once
+                    // revealObserver.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+    </script>
+</body></html>
