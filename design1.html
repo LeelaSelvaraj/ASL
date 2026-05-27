@@ -1,0 +1,382 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title class="">Aadith Software Labs | Aadith Software Labs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Geist:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Shared Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#625595",
+                    "on-tertiary-fixed": "#2c1700",
+                    "on-background": "#191c1e",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-container": "#eceef0",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#c6b7ff",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#a76500",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "primary-container": "#8455ef",
+                    "on-secondary-fixed": "#1e0e4e",
+                    "outline": "#7b7486",
+                    "on-tertiary-container": "#fffbff",
+                    "on-surface-variant": "#494454",
+                    "inverse-surface": "#2d3133",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f7f9fb",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary-fixed-dim": "#d0bcff",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#6d3bd7",
+                    "secondary-fixed": "#e7deff",
+                    "on-primary-fixed-variant": "#5516be",
+                    "on-surface": "#191c1e",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#4a3d7c",
+                    "on-error": "#ffffff",
+                    "surface": "#f7f9fb",
+                    "outline-variant": "#cbc3d7",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed-dim": "#ffb869",
+                    "on-secondary-container": "#524584",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#6b38d4",
+                    "secondary-fixed-dim": "#ccbeff",
+                    "tertiary": "#855000",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#d0bcff",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary": "#ffffff",
+                    "background": "#f7f9fb",
+                    "on-primary-fixed": "#23005c",
+                    "primary-fixed": "#e9ddff",
+                    "tertiary-fixed": "#ffdcbb",
+                    "surface-container-highest": "#e0e3e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "48px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "container-padding": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Geist"],
+                    "body-sm": ["Inter"],
+                    "body-base": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "label-caps": ["JetBrains Mono"],
+                    "display-lg-mobile": ["Geist"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-base": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            border-right: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        .ambient-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(107, 56, 212, 0.08) 0%, rgba(107, 56, 212, 0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+        .ai-border-glow {
+            position: relative;
+            padding: 1px;
+            background: linear-gradient(90deg, #6b38d4, #8455ef, #6b38d4);
+            background-size: 200% 100%;
+            animation: borderRotate 4s linear infinite;
+        }
+        @keyframes borderRotate {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .button-glow:hover {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-x-hidden" style="min-height: auto;">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 dark:bg-surface/70 backdrop-blur-xl border-b border-white/20 dark:border-white/10 shadow-[0_0_15px_rgba(107,56,212,0.1)]">
+<div class="flex items-center justify-between px-container-padding h-16 max-w-7xl mx-auto">
+<div class="flex items-center gap-base"><img alt="NEURONIX Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8mvCz7iNcR3jMnMvkWoCgYps6dyR4ora1T5t3xdx4Lvf0AIGAOBH2nMcZCc3YvHcjl25F3qQti6HtedfwWcKrsaNumRTd5BGTi-VjCF2qQKiLje8Wx7PO404-pZiSMEaIc2c2VaNYlVmQCovZHMr7jT-BdsaldAcfvtu9KZjQx2XEGR21Ze2ilHc0IMbN09YSArwBG2mwoBaZ_7f1_wE1VuBlWFZDzVSW4lIDGn97x-Kzr5THfEACLPMkNDX6NW19Xj20J8ShIxM">
+<span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-surface-bright tracking-tighter">Aadith Software Labs</span></div>
+<div class="hidden md:flex items-center gap-8"><a class="font-label-caps text-label-caps text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary" href="#">ABOUT</a><a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline hover:text-primary transition-colors" href="#">SERVICES</a><a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline hover:text-primary transition-colors" href="#">PROJECTS</a><a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline hover:text-primary transition-colors" href="#">CONTACT</a></div>
+
+</div>
+</nav>
+<main class="mt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[75vh] flex items-center py-12 lg:py-16 transition-all duration-1000 opacity-100 translate-y-0">
+<div class="ambient-glow -top-20 -left-20" style="transform: translate(4.0625px, 19.2852px);"></div>
+<div class="max-w-7xl mx-auto px-container-padding w-full">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<!-- Text Content -->
+<div class="space-y-6 animate-fade-in">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 rounded-full border border-primary/20">
+<span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-primary font-label-caps text-label-caps font-bold">NEXT-GEN SOFTWARE LAB</span>
+</div>
+<div class="space-y-3">
+<h1 class="font-display-lg text-display-lg text-on-surface leading-tight">
+                                Who We Are
+                            </h1>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-xl leading-relaxed">
+<span class="font-bold text-primary">Aadith Software Labs</span> - a startup software firm dedicated to deliver innovative solutions with our exceptional services. We take the time to listen, understand and collaborate closely with our clients, ensuring that our solutions align with their specific requirements and objectives.
+                            </p>
+</div>
+<div class="flex flex-wrap gap-4 pt-2">
+
+<button class="glass-card text-on-surface px-6 py-3 rounded-xl font-label-caps text-label-caps font-bold flex items-center gap-2 hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+                                WATCH DEMO
+                            </button>
+</div>
+<div class="flex items-center gap-8 pt-6 border-t border-outline-variant/30">
+<div>
+<p class="font-headline-md text-headline-md font-bold text-primary">99%</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Precision</p>
+</div>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div>
+<p class="font-headline-md text-headline-md font-bold text-primary">24/7</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Monitoring</p>
+</div>
+</div>
+</div>
+<!-- 3D Illustration Canvas -->
+<div class="relative group">
+<div class="ambient-glow bottom-0 right-0 opacity-50" style="transform: translate(8.125px, 38.5704px);"></div>
+<div class="glass-card p-3 rounded-3xl overflow-hidden relative shadow-2xl">
+<img alt="A futuristic AI brain visualization" class="w-full h-auto rounded-2xl transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/ADBb0ui0kX6WjeiKNrfQvgAHbUUIVxlcfvi9cbOn-8uCww6iD6oBM08_Tq7tx14NsswKqcMlrwyM2ahWoFVJdWbbmiRDE1udQ1df7qSCWUkBfb1phzbVC18mN_WU3nH4nCQfWkEAWUhDmcnD_-nVnDTJYHs1mJBkASG8qMt9zxvh8CxXGmH2zA97cfD6uuv7Lq1yEwhH6eTTMD1GFTBaUsKVxUm7ZVafhyaLR-WI-Q5ANEJp41nzxBRTJ2sXkA">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent pointer-events-none"></div>
+</div>
+<!-- Floating Glass Tags -->
+<div class="absolute -top-4 -right-4 glass-card p-3 rounded-2xl shadow-xl animate-bounce" style="animation-duration: 4s;">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">memory</span>
+</div>
+<div class="absolute -bottom-2 -left-2 glass-card p-3 rounded-2xl shadow-xl animate-bounce" style="animation-duration: 3s;">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-12 bg-surface transition-all duration-1000 opacity-100 translate-y-0">
+<div class="max-w-7xl mx-auto px-container-padding">
+<div class="text-center space-y-3 mb-10">
+<h2 class="font-display-lg text-[32px] md:text-[40px] text-on-surface font-bold">Our Services</h2>
+<div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+<!-- Service Card 1 -->
+<div class="group lg:col-span-2">
+<div class="glass-card p-8 rounded-3xl h-full border border-outline-variant/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(107,56,212,0.1)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full transition-all group-hover:bg-primary/10"></div>
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-[28px]">terminal</span>
+</div>
+<h3 class="font-headline-md text-[20px] text-on-surface mb-3">Software Development</h3>
+<p class="font-body-base text-body-sm text-on-surface-variant leading-relaxed">
+                                Transforming ideas into robust and intuitive software applications that drive digital success through agile methodologies and cutting-edge tech stacks.
+                            </p>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="group lg:col-span-2">
+<div class="glass-card p-8 rounded-3xl h-full border border-outline-variant/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(107,56,212,0.1)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-full transition-all group-hover:bg-secondary/10"></div>
+<div class="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary text-[28px]">verified_user</span>
+</div>
+<h3 class="font-headline-md text-[20px] text-on-surface mb-3">Quality Engineering</h3>
+<p class="font-body-base text-body-sm text-on-surface-variant leading-relaxed">
+                                Ensuring flawless performance and exceptional user experience through meticulous software quality engineering and automated testing frameworks.
+                            </p>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="group lg:col-span-2">
+<div class="glass-card p-8 rounded-3xl h-full border border-outline-variant/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(107,56,212,0.1)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-container/10 rounded-bl-full transition-all group-hover:bg-tertiary-container/20"></div>
+<div class="w-14 h-14 bg-tertiary-container/10 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary text-[28px]">ads_click</span>
+</div>
+<h3 class="font-headline-md text-[20px] text-on-surface mb-3">Digital Marketing</h3>
+<p class="font-body-base text-body-sm text-on-surface-variant leading-relaxed">
+                                Empowering businesses to reach, engage and convert target audience through strategic and data-driven digital marketing solutions and AI-powered insights.
+                            </p>
+</div>
+</div>
+<!-- Service Card 4: Mobile Application Development -->
+<div class="group lg:col-span-3">
+<div class="glass-card p-8 rounded-3xl h-full border border-outline-variant/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(107,56,212,0.1)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full transition-all group-hover:bg-primary/10"></div>
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-[28px]">mobile_friendly</span>
+</div>
+<h3 class="font-headline-md text-[20px] text-on-surface mb-3">Mobile Application Development</h3>
+<p class="font-body-base text-body-sm text-on-surface-variant leading-relaxed">
+            Crafting immersive and user-centric mobile experiences that redefine the way we interact with technology.
+        </p>
+</div>
+</div>
+<!-- Service Card 5: Cloud Services -->
+<div class="group lg:col-span-3">
+<div class="glass-card p-8 rounded-3xl h-full border border-outline-variant/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(107,56,212,0.1)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full transition-all group-hover:bg-primary/10"></div>
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-[28px]">cloud</span>
+</div>
+<h3 class="font-headline-md text-[20px] text-on-surface mb-3">Cloud Services</h3>
+<p class="font-body-base text-body-sm text-on-surface-variant leading-relaxed">
+            Unlocking the power of scalability, flexibility and reliability through comprehensive cloud services for seamless business operations.
+        </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Showcase (Projects) -->
+<section class="py-12 transition-all duration-1000 opacity-100 translate-y-0">
+<div class="max-w-7xl mx-auto px-container-padding">
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto lg:h-[500px]">
+<div class="md:col-span-2 md:row-span-2 glass-card rounded-3xl p-10 flex flex-col justify-end relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-10 transition-transform duration-1000 group-hover:scale-110" data-alt="A clean workstation with coding setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsRFpZtYlvXj2R0HpLFr7rFdwfl-tn25DBhJoGn4eAU-aNUnT-jhYXRqLJIswCUGrM7_LsES_SJgvHPQHUCqYBt5JuXAjABUO_9B2xpkjxAmX4ZRYPZ-j2N4qY1hpgxw8ZjgwOimkMLiUuxDUP8qAhZug2Pp4T3JidczBuxKGNn0tik948L3yyVzipEXO6tuoOjNvJkQKi3tC-oTGr0XUn3qhnarZY1tK_H8bi49oHqb3w1Q4dmKU56cM8u4F6BcHN1IrulQseCBE">
+<div class="relative z-10 space-y-3">
+<span class="font-label-caps text-label-caps text-primary font-bold">LATEST PROJECT</span>
+<h4 class="font-display-lg text-[28px] md:text-[32px] text-on-surface">Neural Network Cloud Architecture</h4>
+<p class="font-body-base text-body-sm text-on-surface-variant max-w-xs">Designing scalable infrastructure for the next generation of enterprise AI applications.</p>
+</div>
+</div>
+<div class="md:col-span-2 glass-card rounded-3xl p-6 flex items-center justify-between border-l-4 border-l-primary">
+<div class="space-y-1">
+<h4 class="font-headline-md text-[20px]">Active Intelligence</h4>
+<p class="font-body-sm text-on-surface-variant">Real-time data processing engines.</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[40px]">rocket_launch</span>
+</div>
+<div class="md:col-span-1 glass-card rounded-3xl p-6 flex flex-col items-center justify-center text-center space-y-3 hover:bg-primary/5 transition-all cursor-pointer"><span class="material-symbols-outlined text-primary text-[32px]">shield</span><p class="font-label-caps text-[10px] font-bold uppercase tracking-wider text-primary">Security First</p><p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">Robust end-to-end encryption and advanced threat detection to keep your data safe.</p></div>
+<div class="md:col-span-1 glass-card rounded-3xl p-6 flex flex-col items-center justify-center text-center space-y-3 hover:bg-secondary/5 transition-all cursor-pointer"><span class="material-symbols-outlined text-secondary text-[32px]">cloud_done</span><p class="font-label-caps text-[10px] font-bold uppercase tracking-wider text-secondary">99.9% Uptime</p><p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">Ensuring your services are always available with our resilient cloud infrastructure.</p></div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-16 bg-primary relative overflow-hidden transition-all duration-1000 opacity-100 translate-y-0">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent"></div>
+<div class="max-w-7xl mx-auto px-container-padding text-center relative z-10 space-y-6">
+<h2 class="font-display-lg text-[36px] md:text-[42px] text-on-primary">Ready to Engineer the Future?</h2>
+<p class="font-body-base text-body-base text-primary-fixed max-w-2xl mx-auto opacity-90">
+                    Join forces with Aadith Software Labs and let's build software that matters. Our team is ready to scale your vision.
+                </p>
+<div class="flex justify-center gap-4">
+<button class="bg-white text-primary px-8 py-4 rounded-2xl font-label-caps text-label-caps font-bold hover:shadow-2xl transition-all scale-100 hover:scale-105 active:scale-95">
+                        CONTACT OUR TEAM
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-on-surface w-full border-t border-outline-variant/30 pt-10 pb-6" style="margin-bottom: 0px;">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-container-padding max-w-7xl mx-auto"><div class="space-y-4 lg:col-span-1">
+<div class="flex items-center gap-2">
+<img alt="AADITH SOFTWARE LABS Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDspWCKTKCVxogUzgdsw_eXQs6cncmWH7TsrQhTIfnhxXOkqJrlYgPMgIT7JM8bmpbN-9b9ZDnG7pnFFbsd91oQQuOYVilceu5DJz1jjYsiotCPGW99buLZzKVhnfAi22HRI1hRavdqfvroo-QsJQcfuY7MEHrQzQfX3O4m5lGrJ8gdr-OnkPv-EcNW1Z_qv0rhX8uS9MLTlWgv9HjuO8NDTg9tX0mBzWrbUnsXEjyFjKDX0zDFTecTz7eCS5SCfiBrip-D7haZFGA">
+<span class="font-headline-md text-[18px] font-bold text-primary">AADITH SOFTWARE LABS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline max-w-xs leading-relaxed">© 2026 Aadith Software Labs AI. Engineered for the future. Delivering precision software solutions globally.</p>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all" href="#">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</a>
+<a class="w-8 h-8 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-all" href="#">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+</div>
+</div>
+<div class="space-y-3 lg:col-span-1">
+<h4 class="font-label-caps text-[11px] font-bold text-on-surface">QUICK LINKS</h4>
+<ul class="space-y-1.5">
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">About</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Projects</a></li>
+<li class=""><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div class="space-y-3 lg:col-span-1">
+<h4 class="font-label-caps text-[11px] font-bold text-on-surface">NEWSLETTER</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Aadith Software Labs AI. Engineered for the future. Delivering precision software solutions globally.</p>
+<div class="flex gap-2">
+<input class="bg-surface-container border-none rounded-xl px-4 py-2 text-body-sm w-full focus:ring-2 focus:ring-primary/20" placeholder="Email address" type="email">
+<button class="bg-primary p-2 rounded-xl text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</div></div>
+</footer>
+<script>
+        // Micro-interactions and subtle effects
+        document.addEventListener('mousemove', (e) => {
+            const glows = document.querySelectorAll('.ambient-glow');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            glows.forEach((glow, index) => {
+                const speed = (index + 1) * 20;
+                glow.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // Simple scroll reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-6');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-6');
+            observer.observe(section);
+        });
+    </script>
+
+
+</body></html>
