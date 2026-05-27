@@ -183,7 +183,7 @@
         }
       </script>
 </head>
-<body class="font-body-md text-on-surface selection:bg-primary/30">
+<body class="font-body-md text-on-surface selection:bg-primary/30 pt-16 md:pt-0">
 <!-- New Global Background Layer -->
 <div class="page-background"></div>
 <div class="page-overlay"></div>
@@ -191,32 +191,58 @@
 <div class="fixed top-0 -left-1/4 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
 <div class="fixed bottom-0 -right-1/4 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
 <!-- Navigation -->
-<nav class="fixed top-0 w-full z-50 bg-surface/10 backdrop-blur-xl border-b border-white/10 shadow-[0px_0px_15px_rgba(20,184,166,0.1)]">
-<div class="flex justify-between items-center h-20 px-margin-desktop max-w-max-width mx-auto">
-<div class="flex items-center gap-3"><img alt="Aadith Software Labs Logo" class="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.8)] filter brightness-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI2Z3VuaXM5i16blLr97MMoZidCo2fasl-T60w315ASK6iDw5-M9PFuPrGm17SwZARgch23a2EdRgY8hbnFfxAycisedBWGjDy09DURKfmhLAglgSRiffp9O7FXyIV4_ei08BoPFo4XQo07xnP7PRcNB5ZD_CUxWbRMQD_QjrthAkr3mWAmZcu_E_ZOpXsbj7AVpp3aIvFekvemX7t366sgX1mrVJDs37w-aYNmHJMN_HtGTEepNz1gi0Z2USA1jEEnYijfhsUUnYs" style="filter: hue-rotate(145deg) saturate(2) brightness(1.2) drop-shadow(rgb(20, 184, 166) 0px 0px 8px);">
-<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Aadith Software Labs</span></div>
-<div class="hidden md:flex items-center gap-8"><a class="font-body-md text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300" href="#about">About</a><a class="font-body-md text-on-surface-variant font-medium hover:text-primary hover:shadow-[0px_0px_10px_rgba(20,184,166,0.5)] transition-all duration-300" href="#services">Services</a><a class="font-body-md text-on-surface-variant font-medium hover:text-primary hover:shadow-[0px_0px_10px_rgba(20,184,166,0.5)] transition-all duration-300" href="#contact">Contact Us</a></div>
-</div>
+<nav class="fixed top-0 w-full z-50 bg-surface/10 md:bg-surface/10 backdrop-blur-xl border-b border-white/10 shadow-[0px_0px_15px_rgba(20,184,166,0.1)]">
+    <!-- Desktop/Tablet Nav -->
+    <div class="hidden md:flex justify-between items-center h-20 px-margin-desktop max-w-max-width mx-auto">
+        <div class="flex items-center gap-3">
+            <img alt="Aadith Software Labs Logo" class="w-10 h-10 object-contain drop-shadow-[0_0_8px_rgba(20,184,166,0.8)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTi4or5PcV5ne4MIEdBM-cr9wun8SdVxUnazHwvN2RWJ48du_AHSi2NdBhTbJdN4Bbz013V5ZFLUBuX9fUv82XMj3vuJl9rJ0MJmFQapLWwL1PYBH8vjivsZofyMpxI17XkpURj3M97raY3Mv4LpaSjfl2wBsMQVG6ruPtAdJiiDfRN609NQm8ajlvn44-qs985LMEqlChFt-RJgA4WYn1HrX1nghEw9b42O7WKe5F9wusqabXILTliUzfaiZptaLexuJiTzAFxjZq" style="filter: hue-rotate(145deg) saturate(2) brightness(1.2) drop-shadow(rgb(20, 184, 166) 0px 0px 8px);">
+            <span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Aadith Software Labs</span>
+        </div>
+        <div class="flex items-center gap-8">
+            <a class="font-body-md text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300" href="#about">About</a>
+            <a class="font-body-md text-on-surface-variant font-medium hover:text-primary hover:shadow-[0px_0px_10px_rgba(20,184,166,0.5)] transition-all duration-300" href="#services">Services</a>
+            <a class="font-body-md text-on-surface-variant font-medium hover:text-primary hover:shadow-[0px_0px_10px_rgba(20,184,166,0.5)] transition-all duration-300" href="#contact">Contact Us</a>
+        </div>
+    </div>
+    <!-- Mobile Nav -->
+    <div class="flex md:hidden justify-between items-center h-16 px-4 bg-surface z-50 relative">
+        <div class="flex items-center gap-2">
+            <img alt="Aadith Software Labs Logo" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTi4or5PcV5ne4MIEdBM-cr9wun8SdVxUnazHwvN2RWJ48du_AHSi2NdBhTbJdN4Bbz013V5ZFLUBuX9fUv82XMj3vuJl9rJ0MJmFQapLWwL1PYBH8vjivsZofyMpxI17XkpURj3M97raY3Mv4LpaSjfl2wBsMQVG6ruPtAdJiiDfRN609NQm8ajlvn44-qs985LMEqlChFt-RJgA4WYn1HrX1nghEw9b42O7WKe5F9wusqabXILTliUzfaiZptaLexuJiTzAFxjZq" style="filter: hue-rotate(145deg) saturate(2) brightness(1.2) drop-shadow(rgb(20, 184, 166) 0px 0px 8px);">
+            <span class="font-headline-md text-lg font-bold text-primary">Aadith Software Labs</span>
+        </div>
+        <button class="text-primary" onclick="document.getElementById('mobile-menu').classList.remove('translate-x-full')">
+            <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+    </div>
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] transition-transform duration-300 md:hidden translate-x-full bg-surface-container-low w-full h-full z-[200]">
+        <div class="flex flex-col h-full p-6">
+            <div class="flex justify-end mb-8">
+                <button class="text-primary" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')">
+                    <span class="material-symbols-outlined text-4xl">close</span>
+                </button>
+            </div>
+            <div class="flex flex-col gap-6 text-center">
+                <a class="text-2xl font-headline-md text-on-surface hover:text-primary transition-colors" href="#about" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')">About</a>
+                <a class="text-2xl font-headline-md text-on-surface hover:text-primary transition-colors" href="#services" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')">Services</a>
+                <a class="text-2xl font-headline-md text-on-surface hover:text-primary transition-colors" href="#contact" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')">Contact Us</a>
+            </div>
+        </div>
+    </div>
 </nav>
 <!-- Hero Section -->
-<section class="relative min-h-screen flex items-center overflow-hidden transition-all duration-1000 ease-out pt-24 opacity-100" id="home">
-<div class="px-margin-desktop max-w-max-width mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-<div class="space-y-8">
+<section class="relative min-h-screen flex items-center overflow-hidden transition-all duration-1000 ease-out pt-20 md:pt-24 opacity-100" id="home">
+<div class="px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 text-center lg:text-left">
+<div class="space-y-8 w-full">
 <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full">
 <span class="font-label-mono text-label-mono text-primary uppercase">Innovation Leader</span>
 </div>
-<h1 class="font-display-xl text-display-xl leading-tight">
-                    Engineering the <br>
-<span class="text-primary text-glow-teal">Future</span>
-</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
-                    Architecting resilient digital ecosystems that scale with precision. We build the backbone of tomorrow's technological giants today.
-                </p>
-
+<h1 class="font-display-xl text-[32px] leading-[40px] md:text-display-xl md:leading-tight">Engineering the Future</h1>
+<p class="font-body-lg text-body-md md:text-body-lg text-on-surface-variant max-w-lg mx-auto lg:mx-0">Empowering businesses through cutting-edge technology and innovative software solutions.</p>
 </div>
-<div class="relative flex justify-center">
+<div class="relative flex justify-center w-full max-w-[300px] md:max-w-[500px] mx-auto lg:mx-0">
 <!-- 3D Visualization Placeholder -->
-<div class="relative w-[500px] h-[500px] animate-rotate">
+<div class="relative w-full aspect-square animate-rotate">
 <div class="absolute inset-0 border-[1px] border-primary/30 rounded-full"></div>
 <div class="absolute inset-4 border-[1px] border-secondary/20 rounded-full rotate-45"></div>
 <div class="absolute inset-8 border-[1px] border-primary/20 rounded-full -rotate-45"></div>
@@ -238,7 +264,7 @@
 </section>
 <!-- About Section -->
 <section class="px-margin-desktop max-w-max-width mx-auto transition-all duration-1000 ease-out py-12 opacity-100" id="about">
-<div class="glass-panel p-12 md:p-16 rounded-3xl relative overflow-hidden" style="transform: translate(-0.765893px, -6.81264px);">
+<div class="glass-panel p-12 md:p-16 rounded-3xl relative overflow-hidden" style="transform: translate(-2.27621px, 5.43595px);">
 <!-- Decorative elements -->
 <div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
 <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/10 rounded-full blur-[80px] pointer-events-none"></div>
@@ -265,7 +291,7 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter justify-center">
 <!-- Software Development -->
-<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(4.06766px, -14.6619px);">
+<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(-2.2535px, -7.72337px);">
 <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-xl">
 <img alt="Software Development Background" class="w-full h-full object-cover opacity-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOeCZdjRyOk5uhb6m1lQjmpJn3HgYd4j5Q06XnyxNfZzPEAYFYRNOPqgsBC2O20f5wa9tADKBhppdEtv3ExOu-M4VGFnMKIoV28DahemK2BNfwy1pwZtfHAdZpfnE2LqhtoLnPMUAiOCp00O7TMvVSgfCqY-apFBMwk8vmKXucc6FW-nR4eqhKLBzRWa5S0neRe7lJi2PEQSKHpffOqNXiRD6PswmYa09a4QkZzxtGAXG_w94WMBHWZItyJCRXDycgMSLgXM238mRi">
 <div class="absolute inset-0 bg-surface/60"></div>
@@ -277,7 +303,7 @@
 <p class="text-on-surface-variant/90 font-medium mb-6 relative z-10">Transforming ideas into robust and intuitive software applications that drive digital success.</p>
 </div>
 <!-- Quality Engineering -->
-<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(-0.771825px, -14.6619px);">
+<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(-2.2535px, -12.5829px);">
 <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-xl">
 <img alt="Quality Engineering Background" class="w-full h-full object-cover opacity-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqxG_6eaxdzue5wcZz4627W-eHAS89TCND7ofWpjCvUNU0euuqIGfuAgjvXlhNDLpQDVe6SNcea_RQBmpJXuW5gcu2xzy_W-CkTR-Mxf02xpMVman3eQN5wjjqElKYFEOWyECdA0ijFTwxlI2kVwvenq00TPxFLcSFXUL7NTk5_b-V7mJV-lFTaCqW0tEXeqGMQOCBtn3rljWFrsq3fLNZcflg-_gO9pkWCC8zOjTSYQ8HJBAUqXYkDrq9WRhzV8ZQ65t1V_AgBJ6T">
 <div class="absolute inset-0 bg-surface/60"></div>
@@ -289,7 +315,7 @@
 <p class="text-on-surface-variant/90 font-medium mb-6 relative z-10">Ensuring flawless performance and exceptional user experience through meticulous software quality engineering.</p>
 </div>
 <!-- Digital Marketing -->
-<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(-5.61132px, -14.6619px);">
+<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(-2.2535px, -17.7386px);">
 <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-xl">
 <img alt="Digital Marketing Background" class="w-full h-full object-cover opacity-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClKDauqYYt_VoXJ2cvsxhFs_tBREOZ7RJ-sr4DbenwPwK1IJEw9n9ig0Iq5U4sQOqc4eCBAXnjsMBw33gFdhGGyaTrhcknC-m3EFe3-50oBZBPptdvUejDYWoC6dM1bYxwhpHrjCvbOeSqxMZTY0y-ZwCwfIiW37bn5BIoelByj0VyMpYt__sN-DSjuygEdyTr34wv2oYHcUVfGMnXf6YFE3ILvJe1_Vvrp3S5_2GPAy4P9sQhQPDnrfJ3Hu7U_yps8-LL5iTiMAeK">
 <div class="absolute inset-0 bg-surface/60"></div>
@@ -301,7 +327,7 @@
 <p class="text-on-surface-variant/90 font-medium mb-6 relative z-10">Empowering businesses to reach, engage and convert target audience through strategic and data-driven digital marketing solutions.</p>
 </div>
 <!-- Mobile Application Development -->
-<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(4.06766px, -18.8794px);">
+<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(-2.2535px, -22.9438px);">
 <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-xl">
 <img alt="Mobile Application Development Background" class="w-full h-full object-cover opacity-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2YHkctyPF57ZwMEd9Wt47KE5bSa5cPxASb6PPQOCHJDbGkMeU02f4nzmbB_NulAJNPxdfF0XjHp-9iugkKbgTn_g7A6hQvQVcVaDKVYEdK9DuvW4AViEXUTFrlXSDvP3loQ4RIOckxAJBEFVg-gFJ4a1Z4SF7bdywB7P93-KbwthACwCUymoObRcf-Bx5zbacRRDaBzIHrPDRHneqln2visQBFtAJsoLu3Eh-IMBEDpRvXv1kCsLCP6_ntId1UfjzcqZhC4xP5PTg">
 <div class="absolute inset-0 bg-surface/60"></div>
@@ -313,7 +339,7 @@
 <p class="text-on-surface-variant/90 font-medium mb-6 relative z-10">Crafting immersive and user-centric mobile experiences that redefine the way we interact with technology.</p>
 </div>
 <!-- Cloud Services -->
-<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(-0.771825px, -18.8794px);">
+<div class="glass-panel p-8 rounded-xl group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 flex flex-col service-card relative" style="transform: translate(-2.2535px, -27.9515px);">
 <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-xl">
 <img alt="Cloud Services Background" class="w-full h-full object-cover opacity-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk_mm3YDib9-KVy2sM2B9HdLTkxIKek5hZdTTbG8r1tFWuYjRkOrN7gQhmbuVJ5ZwmooNFXFf-pmAxL1W5DpSovALgfwc1pYXWDipF0xiG8k6c-DXlT6opafC0k8qkt8WCskUsN5mz9OlBnh1nIQ0e4lGaNBRuOnwzyZ_aZ94gfxps_aWiAsfpB2oOL_LftKKjSXsMsjf-J38UqEgD2ELhQtGKyuWtBzVcZmFW2saeoubhExxU9dt9xQ6Iwz5chbUJjMVqxD5AFHt_">
 <div class="absolute inset-0 bg-surface/60"></div>
@@ -328,16 +354,22 @@
 </section>
 <!-- Final CTA Section -->
 <section class="px-margin-desktop max-w-max-width mx-auto transition-all duration-1000 ease-out py-12 opacity-100" id="contact">
-<div class="glass-floating rounded-3xl p-16 text-center relative overflow-hidden" style="transform: translate(-0.765893px, -23.8242px);">
+<div class="glass-floating rounded-3xl p-16 text-center relative overflow-hidden" style="transform: translate(-2.27621px, -34.9722px);">
 <!-- Glow background for CTA -->
 <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px]"></div>
 <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/20 rounded-full blur-[80px]"></div>
 <div class="relative z-10">
-<h2 class="font-display-xl text-headline-lg mb-6">Ready to Disrupt?</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
-                    Join the ranks of pioneers who are redefining the digital landscape. Let's architect your success story.
-                </p>
-
+<h2 class="font-display-xl text-headline-lg mb-6">Contact Us</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">Have a project in mind or need expert technical guidance? Reach out to us today and let's build the future together.</p><div class="mt-8 flex flex-col items-center gap-4">
+    <a href="mailto:contact@aadith.com" class="font-body-lg text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
+        <span class="material-symbols-outlined">mail</span>
+        contact@aadith.com
+    </a>
+    <a href="tel:+15550000000" class="font-body-lg text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
+        <span class="material-symbols-outlined">smartphone</span>
+        +1 (555) 000-0000
+    </a>
+</div>
 </div>
 </div>
 </section>
@@ -346,8 +378,6 @@
 <div class="flex flex-col md:flex-row justify-between items-center gap-8 px-margin-desktop max-w-max-width mx-auto">
 <!-- Left Side: Brand Identity -->
 <div class="flex flex-col items-center md:items-start gap-4">
-
-
 <p class="text-on-surface-variant text-sm font-medium">© 2026 Aadith Software Labs. Engineering the Future.</p>
 </div>
 <!-- Right Side: Navigation Links -->
