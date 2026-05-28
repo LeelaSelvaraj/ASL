@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aadith Software Labs | Next-Gen Cloud Infrastructure</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#003fa4",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-dim": "#d2d9f4",
+                        "surface-bright": "#faf8ff",
+                        "error-container": "#ffdad6",
+                        "on-background": "#131b2e",
+                        "surface-container-highest": "#dae2fd",
+                        "secondary": "#00696f",
+                        "primary": "#0050cb",
+                        "inverse-on-surface": "#eef0ff",
+                        "inverse-primary": "#b3c5ff",
+                        "outline-variant": "#c2c6d8",
+                        "on-secondary-fixed": "#002022",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbd0",
+                        "surface-container": "#eaedff",
+                        "secondary-container": "#00f1fe",
+                        "on-tertiary-fixed-variant": "#832600",
+                        "tertiary-container": "#cc4204",
+                        "inverse-surface": "#283044",
+                        "on-tertiary-container": "#fff6f4",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "on-tertiary-fixed": "#390c00",
+                        "background": "#faf8ff",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0066ff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#74f5ff",
+                        "on-primary-container": "#f8f7ff",
+                        "primary-fixed": "#dae1ff",
+                        "on-error": "#ffffff",
+                        "outline": "#727687",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "surface-container-low": "#f2f3ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#006a70",
+                        "surface-tint": "#0054d6",
+                        "on-surface": "#131b2e",
+                        "tertiary": "#a33200",
+                        "on-primary-fixed": "#001849",
+                        "surface": "#faf8ff",
+                        "on-surface-variant": "#424656",
+                        "secondary-fixed-dim": "#00dbe7",
+                        "surface-variant": "#dae2fd",
+                        "on-secondary-fixed-variant": "#004f54"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: #0050cb;
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 203, 0.1);
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 80, 203, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 80, 203, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(0, 80, 203, 0.15), 0 0 15px rgba(0, 80, 203, 0.1);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 70% 30%, rgba(0, 242, 255, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(0, 80, 203, 0.05) 0%, transparent 50%);
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float { animation: floating 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: floating 8s ease-in-out infinite 1s; }
+        
+        .icon-float {
+            animation: floating-icon 5s ease-in-out infinite;
+        }
+        @keyframes floating-icon {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00f1fe;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #00f1fe;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 241, 254, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 241, 254, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 241, 254, 0); }
+        }
+
+        .bg-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(210,100%,95%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(220,100%,95%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(200,100%,92%,1) 0, transparent 50%);
+        }
+
+        .input-glass {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(0, 80, 203, 0.1);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+        .input-glass:focus {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #0050cb;
+            outline: none;
+            box-shadow: 0 0 15px 2px rgba(0, 80, 203, 0.15);
+        }
+
+        /* Shimmer Animation */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .btn-shimmer {
+            background: linear-gradient(90deg, #0050cb 0%, #00f1fe 50%, #0050cb 100%);
+            background-size: 200% auto;
+            animation: shimmer 4s linear infinite;
+        }
+        .btn-shimmer:hover {
+            animation-duration: 2s;
+        }
+
+        /* Contact Form Enhanced States */
+        .form-card-enhanced {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .form-card-enhanced:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            border-color: rgba(0, 80, 203, 0.3);
+            box-shadow: 0 30px 60px -12px rgba(0, 80, 203, 0.12), 0 18px 36px -18px rgba(0, 80, 203, 0.2);
+        }
+
+        /* Ambient Blob for Contact Section */
+        @keyframes blob-drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .ambient-blob {
+            animation: blob-drift 20s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        /* Staggered revealing */
+        .stagger-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .stagger-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-white overflow-x-hidden hero-gradient">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,80,203,0.1)]">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-gutter">
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">Aadith Software Labs</span>
+<div class="hidden md:flex gap-8 ml-12">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="#services">Solutions</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#portfolio">Projects</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Developers</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#contact">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">dark_mode</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md font-bold hover:shadow-[0_0_20px_rgba(0,80,203,0.3)] transition-all active:scale-95">Get Started</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<main class="relative pt-32 pb-24 px-margin-desktop max-w-container-max mx-auto min-h-[90vh] flex flex-col md:flex-row items-center gap-12">
+<!-- Left Content -->
+<div class="flex-1 space-y-6 z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full mb-6">
+<span class="pulse-dot"></span>
+<span class="font-label-md text-label-md text-on-secondary-container">Aether v2.4 Now Live</span>
+</div>
+<h1 class="font-display-lg text-display-lg max-w-xl text-on-background">
+            Next-Gen Cloud <span class="text-primary">Infrastructure</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mt-6">
+            Empowering the next generation of digital pioneers with seamless, high-performance cloud solutions engineered for the infinite scale.
+        </p>
+<div class="flex flex-wrap gap-4 mt-10">
+<button class="bg-gradient-to-r from-primary to-secondary-container text-on-primary px-10 py-4 rounded-xl font-label-md text-label-md font-bold hover:shadow-[0_12px_40px_-12px_rgba(0,102,255,0.5)] transition-all transform hover:-translate-y-1 active:scale-95">
+                Get Started
+            </button>
+<button class="glass-card px-10 py-4 rounded-xl font-label-md text-label-md font-bold text-primary hover:bg-surface-container transition-all transform hover:-translate-y-1">
+                View Docs
+            </button>
+</div>
+<!-- Quick Stats/Social Proof -->
+<div class="pt-12 grid grid-cols-3 gap-8 border-t border-outline-variant/20 mt-16">
+<div>
+<div class="font-headline-md text-headline-md text-primary">99.99%</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-1">Uptime</div>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-primary">2.4ms</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-1">Latency</div>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-primary">200+</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-1">Nodes</div>
+</div>
+</div>
+</div>
+<!-- Right Content: 3D Graphic & Floating Cards -->
+<div class="flex-1 relative w-full h-[600px] flex items-center justify-center">
+<div class="absolute inset-0 bg-mesh opacity-50 blur-3xl"></div>
+<div class="relative z-0 scale-110">
+<img alt="Abstract infrastructure flow" class="w-full h-auto object-contain mix-blend-multiply opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-vZDVb6e7ITHQI31nGMUNRj5If-5IG_O-KZ9fT0BVkmevG_b1ySL9z9VYJsqmkD9okOq3E2rnnkysCNt9eUUpzs3UGu3LSSHTMKGbn-KVc4KqLT0ZbL2ap6pZJ0Mqa9gqOk0S9cDq-2Dv2PRn9045UmDEGkMReFVq1JmILJKWRHuV9aH14LQki6pRnuZZmAoE_G8sGxp3yQU_F_Vm4de6lNwlDsvNG60RYVU785LaFsre5gQU-UFxPJWih5S3fvlR4pV2qcTprHGW"/>
+</div>
+<div class="absolute top-10 right-0 glass-card p-6 rounded-2xl w-56 animate-float z-20">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary" data-weight="fill">database</span>
+<span class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full">LIVE</span>
+</div>
+<div class="font-label-md text-label-md font-bold mb-1 text-on-surface">Global Sharding</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-primary w-[75%] h-full"></div>
+</div>
+<div class="text-[11px] text-on-surface-variant mt-2">Syncing 12 datacenters...</div>
+</div>
+<div class="absolute bottom-10 left-0 glass-card p-6 rounded-2xl w-64 animate-float-delayed z-20">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</div>
+<div>
+<div class="text-xs font-bold text-on-surface">API Status</div>
+<div class="text-[10px] text-primary">Connected</div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-1 bg-primary/20 rounded-full w-full"></div>
+<div class="h-1 bg-primary/20 rounded-full w-2/3"></div>
+<div class="h-1 bg-primary/20 rounded-full w-1/2"></div>
+</div>
+</div>
+<div class="absolute top-1/2 -translate-y-1/2 -right-12 glass-card p-4 rounded-xl animate-float z-20" style="animation-duration: 7s;">
+<span class="material-symbols-outlined text-secondary-container text-4xl" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+</div>
+</div>
+</main>
+<!-- Feature Bento Grid (Brief Preview) -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-card p-10 rounded-3xl col-span-1 md:col-span-2 group">
+<div class="flex flex-col h-full justify-between">
+<div>
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">speed</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4 text-on-surface">Warp-Speed Deployment</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Deploy global clusters in under 60 seconds with our optimized Aether-kernel architecture. Zero cold starts, infinite possibilities.</p>
+</div>
+<div class="mt-12 relative overflow-hidden rounded-xl h-32 bg-surface-container-low border border-outline-variant/10">
+<div class="absolute bottom-0 inset-x-0 h-2/3 bg-gradient-to-t from-primary/10 to-transparent"></div>
+<div class="absolute inset-0 flex items-center justify-center gap-2">
+<div class="w-1 bg-primary/30 h-10 rounded-full animate-pulse"></div>
+<div class="w-1 bg-primary/40 h-16 rounded-full animate-pulse" style="animation-delay: 0.1s"></div>
+<div class="w-1 bg-primary/50 h-20 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+<div class="w-1 bg-primary/60 h-24 rounded-full animate-pulse" style="animation-delay: 0.3s"></div>
+<div class="w-1 bg-primary/70 h-28 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+<div class="w-1 bg-primary/80 h-20 rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
+<div class="w-1 bg-primary/60 h-14 rounded-full animate-pulse" style="animation-delay: 0.6s"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-card p-10 rounded-3xl col-span-1 border-primary/20 bg-gradient-to-br from-white/80 to-surface-container-low">
+<div class="w-14 h-14 bg-secondary-container/10 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary-container text-3xl">security</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4 text-on-surface">Neural Security</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">AI-driven threat detection that evolves with every interaction, protecting your infrastructure from the edge inward.</p>
+<ul class="space-y-3">
+<li class="flex items-center gap-2 font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> End-to-end Encryption
+                </li>
+<li class="flex items-center gap-2 font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> SOC2 Compliance
+                </li>
+<li class="flex items-center gap-2 font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> Real-time Mitigation
+                </li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Our Services Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto overflow-hidden" id="services">
+<div class="mb-20 text-center reveal-on-scroll">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-4 uppercase tracking-tight">Our <span class="text-primary">Services</span></h2>
+<div class="w-24 h-1.5 bg-primary rounded-full mx-auto"></div>
+<p class="mt-6 text-on-surface-variant max-w-2xl mx-auto">Future-proof engineering solutions designed to scale your business into the next era of digital excellence.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Software Development -->
+<div class="service-card p-10 rounded-[2.5rem] group reveal-on-scroll">
+<div class="mb-10 relative h-48 flex items-center justify-center"><div class="absolute inset-0 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors"></div><div class="relative w-24 h-24 rounded-2xl bg-gradient-to-br from-white/20 to-primary/10 border border-white/30 backdrop-blur-md flex items-center justify-center icon-float shadow-[0_8px_32px_0_rgba(0,80,203,0.1)]"><div class="absolute -inset-1 bg-gradient-to-br from-primary/40 to-transparent rounded-2xl blur-sm opacity-50"></div><span class="material-symbols-outlined text-5xl text-primary drop-shadow-[0_0_8px_rgba(0,80,203,0.4)]" style="font-variation-settings: 'FILL' 1;">code_blocks</span><div class="absolute -bottom-2 -right-2 w-10 h-10 rounded-lg bg-secondary-container/20 border border-white/20 backdrop-blur-sm flex items-center justify-center"><span class="material-symbols-outlined text-secondary-container text-xl">terminal</span></div></div></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">Software Development</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Transforming ideas into robust and intuitive software applications that drive digital success.</p>
+</div>
+<!-- Quality Engineering -->
+<div class="service-card p-10 rounded-[2.5rem] group reveal-on-scroll" style="transition-delay: 100ms;">
+<div class="mb-10 relative h-48 flex items-center justify-center"><div class="absolute inset-0 bg-secondary/5 rounded-full blur-2xl group-hover:bg-secondary/10 transition-colors"></div><div class="relative w-24 h-24 rounded-2xl bg-gradient-to-br from-white/20 to-secondary/10 border border-white/30 backdrop-blur-md flex items-center justify-center icon-float shadow-[0_8px_32px_0_rgba(0,105,111,0.1)]" style="animation-delay: 0.5s;"><div class="absolute -inset-1 bg-gradient-to-br from-secondary/40 to-transparent rounded-2xl blur-sm opacity-50"></div><span class="material-symbols-outlined text-5xl text-secondary drop-shadow-[0_0_8px_rgba(0,105,111,0.4)]" style="font-variation-settings: 'FILL' 1;">verified_user</span><div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary/20 border border-white/20 backdrop-blur-sm flex items-center justify-center"><span class="material-symbols-outlined text-primary text-lg">check</span></div></div></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">Quality Engineering</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Ensuring flawless performance and exceptional user experience through meticulous software quality engineering.</p>
+</div>
+<!-- Digital Marketing -->
+<div class="service-card p-10 rounded-[2.5rem] group reveal-on-scroll" style="transition-delay: 200ms;">
+<div class="mb-10 relative h-48 flex items-center justify-center"><div class="absolute inset-0 bg-tertiary/5 rounded-full blur-2xl group-hover:bg-tertiary/10 transition-colors"></div><div class="relative w-24 h-24 rounded-2xl bg-gradient-to-br from-white/20 to-tertiary/10 border border-white/30 backdrop-blur-md flex items-center justify-center icon-float shadow-[0_8px_32px_0_rgba(163,50,0,0.1)]" style="animation-delay: 1s;"><div class="absolute -inset-1 bg-gradient-to-br from-tertiary/40 to-transparent rounded-2xl blur-sm opacity-50"></div><span class="material-symbols-outlined text-5xl text-tertiary drop-shadow-[0_0_8px_rgba(163,50,0,0.4)]" style="font-variation-settings: 'FILL' 1;">ads_click</span><div class="absolute inset-0 flex items-center justify-center"><div class="w-full h-[1px] bg-tertiary/20 absolute rotate-45"></div><div class="w-full h-[1px] bg-tertiary/20 absolute -rotate-45"></div></div></div></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">Digital Marketing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Empowering businesses to reach, engage and convert target audience through strategic digital marketing.</p>
+</div>
+<!-- Mobile App Development -->
+<div class="service-card p-10 rounded-[2.5rem] group reveal-on-scroll" style="transition-delay: 300ms;">
+<div class="mb-10 relative h-48 flex items-center justify-center"><div class="absolute inset-0 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors"></div><div class="relative w-24 h-24 rounded-2xl bg-gradient-to-br from-white/20 to-primary/10 border border-white/30 backdrop-blur-md flex items-center justify-center icon-float shadow-[0_8px_32px_0_rgba(0,80,203,0.1)]" style="animation-delay: 1.5s;"><div class="absolute -inset-1 bg-gradient-to-br from-primary/40 to-transparent rounded-2xl blur-sm opacity-50"></div><span class="material-symbols-outlined text-5xl text-primary drop-shadow-[0_0_8px_rgba(0,80,203,0.4)]" style="font-variation-settings: 'FILL' 1;">devices</span><div class="absolute -bottom-1 inset-x-4 h-1 bg-secondary-container/30 rounded-full blur-[2px]"></div></div></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">Mobile Development</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Crafting immersive and user-centric mobile experiences that redefine the way we interact with technology.</p>
+</div>
+<!-- Cloud Services -->
+<div class="service-card p-10 rounded-[2.5rem] group reveal-on-scroll" style="transition-delay: 400ms;">
+<div class="mb-10 relative h-48 flex items-center justify-center"><div class="absolute inset-0 bg-secondary-container/5 rounded-full blur-2xl group-hover:bg-secondary-container/10 transition-colors"></div><div class="relative w-24 h-24 rounded-2xl bg-gradient-to-br from-white/20 to-secondary-container/10 border border-white/30 backdrop-blur-md flex items-center justify-center icon-float shadow-[0_8px_32px_0_rgba(0,241,254,0.1)]" style="animation-delay: 2s;"><div class="absolute -inset-1 bg-gradient-to-br from-secondary-container/40 to-transparent rounded-2xl blur-sm opacity-50"></div><span class="material-symbols-outlined text-5xl text-secondary-container drop-shadow-[0_0_8px_rgba(0,241,254,0.4)]" style="font-variation-settings: 'FILL' 1;">cloud_queue</span><div class="absolute -top-3 -left-3 w-12 h-12 bg-primary/5 rounded-full border border-primary/10 animate-pulse"></div></div></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">Cloud Services</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Unlocking the power of scalability, flexibility and reliability through comprehensive cloud services.</p>
+</div>
+<!-- Consultation/Call to Action -->
+<div class="service-card p-10 rounded-[2.5rem] bg-primary text-on-primary flex flex-col justify-center items-center text-center group reveal-on-scroll" style="transition-delay: 500ms;">
+<h3 class="font-headline-md text-headline-md mb-6">Need a custom solution?</h3>
+<p class="font-body-md mb-10 text-on-primary/80">Our engineering team is ready to help you architect your next breakthrough.</p>
+<a class="bg-white text-primary px-10 py-4 rounded-2xl font-bold hover:shadow-xl transition-all hover:scale-105 active:scale-95" href="#contact">Let's Talk</a>
+</div>
+</div>
+</section>
+<!-- Featured Projects Portfolio Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto" id="portfolio">
+<div class="mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Featured <span class="text-primary">Projects</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">A selection of enterprise-grade solutions built by Aadith Software Labs for the world's most demanding digital environments.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Project Card 1 -->
+<div class="glass-card rounded-3xl overflow-hidden group">
+<div class="aspect-video bg-surface-container-highest overflow-hidden relative">
+<img alt="Project Project" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 mix-blend-overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABQFaj8hQbcHWD5JLswewWPBz7Bb2uIVpLUc7YRxZ6G_YCb2bqwY_Ema48pYGkA5aLC-eYAfi_lj6tpUmr_pMEf8C1V8cLUsBeDjr7E_18_grFvTqL85bWi17Hqi3eANKZaRGVLpp8oBSpz2yRT9zlr26iv_sKhpUlyz7Dl4K6OokMs7Wv-GCT0NR1fTm4Zc3bxGaszdav_bj8rKVPyIIxBw7miyPmC2P3p99cFSCiXX8xogft90PKCbozgHw3a7XAqGxA7wnpp_ZT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+</div>
+<div class="p-8">
+<div class="flex gap-2 mb-4">
+<span class="text-[10px] font-bold px-2 py-1 bg-primary/10 text-primary rounded-md uppercase tracking-wider">Cloud Native</span>
+<span class="text-[10px] font-bold px-2 py-1 bg-secondary-container/10 text-secondary-container rounded-md uppercase tracking-wider">AI Ops</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Project Chronos</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Real-time predictive maintenance system for hyperscale data centers, reducing downtime by 45% using neural analysis.</p>
+<a class="inline-flex items-center gap-2 text-primary font-bold text-label-md hover:gap-4 transition-all" href="#">
+                    View Case Study <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="glass-card rounded-3xl overflow-hidden group">
+<div class="aspect-video bg-surface-container-highest overflow-hidden relative">
+<img alt="Project Nexus" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 mix-blend-overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbjgcUnUvl31Ew82ELzeiYqXv1UjGmX1PFnla7rOnEBWJfY-lhf6PxGkC978vafLL-OgRwenXMD1UFS0PPY2Y40VPTf6DCAgwP-z_-OnU6X_rT0MsPluvIm4Gjja3_2meVBx65oMs3zAmmJI5FTPTAR1vCCYlKYLDhBzyaobSTfYqmw4IKSr_qhRBj8pGny2WiV17VUjlNLMXPT0Sty88mNrA42YcvVHu-ODrY3b9UF0aYVVo3dciVI7unqxKFOJO3CvLopzT1yOrO"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+</div>
+<div class="p-8">
+<div class="flex gap-2 mb-4">
+<span class="text-[10px] font-bold px-2 py-1 bg-primary/10 text-primary rounded-md uppercase tracking-wider">Security</span>
+<span class="text-[10px] font-bold px-2 py-1 bg-secondary-container/10 text-secondary-container rounded-md uppercase tracking-wider">Encryption</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Nexus Vault</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">A quantum-resistant encryption gateway for financial institutions, securing over $2B in daily transactions.</p>
+<a class="inline-flex items-center gap-2 text-primary font-bold text-label-md hover:gap-4 transition-all" href="#">
+                    View Case Study <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="glass-card rounded-3xl overflow-hidden group">
+<div class="aspect-video bg-surface-container-highest overflow-hidden relative">
+<img alt="Project Vertex" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 mix-blend-overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq10x1LuE3R7qbZTWVUEEQY_HI9rUONoFGgXO8FmkhxHFsc4khhfwB3yfsKz-mJzIj4aF-zJnc7bsLEhInVRTIjOtZiQWweT-FoCzdABgcHFXNBJ5XIXGwv-NDh5fCUqLza0lcSYdMAL-4NNq0S3SJqiIm6R-5eIQz6gRTlBE0BpivySdIymBKJD5Wq2eFLuLnSWQAK9OYhiJMfgTF3kbYosTIFzwkkETQVHrGKkd-A7_5qEFnMVkox-xVGqaeQoJCojpRDL12RcZW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+</div>
+<div class="p-8">
+<div class="flex gap-2 mb-4">
+<span class="text-[10px] font-bold px-2 py-1 bg-primary/10 text-primary rounded-md uppercase tracking-wider">Automation</span>
+<span class="text-[10px] font-bold px-2 py-1 bg-secondary-container/10 text-secondary-container rounded-md uppercase tracking-wider">SaaS</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Vertex CI/CD</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Fully automated deployment pipeline for global SaaS providers, achieving 100+ deployments daily without human intervention.</p>
+<a class="inline-flex items-center gap-2 text-primary font-bold text-label-md hover:gap-4 transition-all" href="#">
+                    View Case Study <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Let's Build the Future Contact Form Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto relative overflow-visible" id="contact">
+<!-- Enhanced Background Decor -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden rounded-[40px]">
+<div class="ambient-blob absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="ambient-blob absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-secondary-container/10 rounded-full blur-[100px]" style="animation-delay: -5s;"></div>
+</div>
+<div class="glass-card rounded-[40px] p-12 md:p-20 overflow-hidden relative">
+<div class="flex flex-col lg:flex-row gap-16 relative z-10">
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-6 leading-tight stagger-reveal" data-delay="0">
+                    Let's Build the <br/><span class="text-primary">Future Together</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 stagger-reveal" data-delay="100">
+                    Ready to transform your digital infrastructure? Get in touch with our engineering team for a consultation on scaling your next big idea.
+                </p>
+<div class="space-y-8">
+<div class="flex items-center gap-6 stagger-reveal" data-delay="200">
+<div class="w-12 h-12 bg-white/50 rounded-xl flex items-center justify-center border border-white/20 shadow-sm group hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">mail</span>
+</div>
+<div>
+<div class="text-xs font-bold text-on-surface-variant uppercase">Email Us</div>
+<div class="font-body-md text-on-surface">hello@aadithlabs.com</div>
+</div>
+</div>
+<div class="flex items-center gap-6 stagger-reveal" data-delay="300">
+<div class="w-12 h-12 bg-white/50 rounded-xl flex items-center justify-center border border-white/20 shadow-sm group hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div>
+<div class="text-xs font-bold text-on-surface-variant uppercase">Global HQ</div>
+<div class="font-body-md text-on-surface">Silicon Valley, Tech Corridor</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 lg:max-w-md bg-white/40 p-8 md:p-10 rounded-3xl border border-white/40 backdrop-blur-md form-card-enhanced stagger-reveal" data-delay="400">
+<form action="#" class="space-y-6">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Full Name</label>
+<input class="w-full px-6 py-4 rounded-xl input-glass font-body-md focus:ring-0" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Work Email</label>
+<input class="w-full px-6 py-4 rounded-xl input-glass font-body-md focus:ring-0" placeholder="john@company.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Inquiry Type</label>
+<select class="w-full px-6 py-4 rounded-xl input-glass font-body-md appearance-none focus:ring-0">
+<option>Cloud Infrastructure</option>
+<option>AI Development</option>
+<option>Security Audit</option>
+<option>General Inquiry</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1">Message</label>
+<textarea class="w-full px-6 py-4 rounded-xl input-glass font-body-md resize-none focus:ring-0" placeholder="How can we help you scale?" rows="4"></textarea>
+</div>
+<button class="w-full btn-shimmer text-on-primary py-4 rounded-xl font-bold transition-all active:scale-90 hover:shadow-[0_12px_40px_-12px_rgba(0,102,255,0.6)] mt-4" type="submit">
+                        Send Request
+                    </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-bright border-t border-outline-variant/20 mt-24">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Aadith Software Labs</span>
+<p class="font-label-md text-label-md text-on-surface-variant">© 2026 Aadith Software Labs. Engineered for the infinite.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors hover:translate-y-[-2px] transition-transform duration-200" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors hover:translate-y-[-2px] transition-transform duration-200" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors hover:translate-y-[-2px] transition-transform duration-200" href="#">Security</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors hover:translate-y-[-2px] transition-transform duration-200" href="#">Status</a>
+</div>
+</div>
+</footer>
+<!-- Interactive Atmospheric Particles Layer -->
+<div class="fixed inset-0 pointer-events-none z-[-1]" id="particles-container"></div>
+<script>
+    // Intersection Observer for stagger entrance animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('stagger-reveal')) {
+                    const delay = entry.target.getAttribute('data-delay') || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('active');
+                    }, delay);
+                } else {
+                    entry.target.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-on-scroll, .stagger-reveal').forEach((el) => observer.observe(el));
+
+    // Mouse movement interaction for ambient blobs in contact section
+    const contactSection = document.getElementById('contact');
+    const blobs = contactSection.querySelectorAll('.ambient-blob');
+    
+    contactSection.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = contactSection.getBoundingClientRect();
+        
+        const x = (clientX - left) / width - 0.5;
+        const y = (clientY - top) / height - 0.5;
+        
+        blobs.forEach((blob, index) => {
+            const speed = (index + 1) * 20;
+            blob.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+        });
+    });
+
+    // Simple micro-interaction for floating particles
+    const container = document.getElementById('particles-container');
+    const particleCount = 15;
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'absolute bg-primary/10 rounded-full blur-xl';
+        
+        const size = Math.random() * 200 + 100;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        const duration = Math.random() * 20 + 10;
+        particle.style.transition = `all ${duration}s linear`;
+        
+        container.appendChild(particle);
+
+        setInterval(() => {
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+        }, duration * 1000);
+    }
+</script>
+</body></html>
