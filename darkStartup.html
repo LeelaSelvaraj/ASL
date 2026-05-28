@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --primary-glow: rgba(176, 198, 255, 0.15);
+            --secondary-glow: rgba(87, 27, 193, 0.2);
+        }
+        body {
+            background-color: #131314;
+            color: #e5e2e3;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .glass-card:hover {
+            box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.5);
+            border-color: rgba(176, 198, 255, 0.3);
+        }
+        
+        /* 3D Tilt & Shimmer for Services */
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.1s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
+            will-change: transform;
+        }
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                transparent 40%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 60%,
+                transparent 100%
+            );
+            transition: all 0.6s;
+            pointer-events: none;
+        }
+        .service-card:hover::after {
+            top: 0;
+            left: 0;
+        }
+        .service-card:hover {
+            border-color: rgba(176, 198, 255, 0.5);
+            box-shadow: 0 0 25px rgba(176, 198, 255, 0.15);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% -20%, var(--secondary-glow), transparent 70%),
+                        radial-gradient(circle at 0% 100%, var(--primary-glow), transparent 50%);
+            position: relative;
+        }
+        
+        .ambient-mesh {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(176, 198, 255, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(87, 27, 193, 0.05) 0px, transparent 50%);
+            animation: mesh-shift 20s ease-in-out infinite alternate;
+            z-index: -2;
+        }
+
+        #particle-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        @keyframes mesh-shift {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(2%, 2%); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; filter: blur(40px); }
+            50% { opacity: 0.8; filter: blur(60px); }
+        }
+        @keyframes subtle-pulse {
+            0%, 100% { box-shadow: 0 0 0px rgba(176, 198, 255, 0); }
+            50% { box-shadow: 0 0 20px rgba(176, 198, 255, 0.4); }
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 8s ease-in-out infinite 1.5s; }
+        .btn-pulse:hover { animation: subtle-pulse 2s infinite; }
+        
+        /* Enhanced Entrance Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Specialized Reveal for Work Section */
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92) translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .glow-sphere {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: #b0c6ff;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: pulse-glow 10s infinite;
+        }
+
+        /* Portfolio Image Parallax */
+        .portfolio-card img {
+            transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform;
+        }
+        .portfolio-card:hover img {
+            transform: scale(1.1) translateY(-2%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #131314; }
+        ::-webkit-scrollbar-thumb { background: #353436; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #424655; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-float, .animate-float-delayed, .ambient-mesh, .glow-sphere, .reveal-up, .reveal-scale, .service-card, .portfolio-card img {
+                animation: none !important;
+                transition: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#4f1700",
+                    "tertiary-fixed-dim": "#ffb599",
+                    "secondary-fixed-dim": "#d0bcff",
+                    "on-primary-fixed": "#001945",
+                    "on-primary": "#002d6f",
+                    "inverse-primary": "#0058cb",
+                    "on-secondary-container": "#c4abff",
+                    "surface-variant": "#353436",
+                    "on-secondary-fixed-variant": "#5516be",
+                    "primary-fixed": "#d9e2ff",
+                    "tertiary-container": "#f36420",
+                    "surface-container": "#201f20",
+                    "on-primary-container": "#002661",
+                    "background": "#131314",
+                    "surface": "#131314",
+                    "surface-container-highest": "#353436",
+                    "on-background": "#e5e2e3",
+                    "secondary-fixed": "#e9ddff",
+                    "on-tertiary-fixed-variant": "#7f2b00",
+                    "error": "#ffb4ab",
+                    "surface-dim": "#131314",
+                    "on-secondary": "#3c0091",
+                    "outline": "#8c90a1",
+                    "primary-container": "#568dff",
+                    "on-tertiary-fixed": "#370e00",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "tertiary-fixed": "#ffdbce",
+                    "secondary": "#d0bcff",
+                    "surface-container-low": "#1c1b1c",
+                    "on-surface": "#e5e2e3",
+                    "inverse-surface": "#e5e2e3",
+                    "surface-tint": "#b0c6ff",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#0e0e0f",
+                    "surface-bright": "#3a393a",
+                    "surface-container-high": "#2a2a2b",
+                    "on-secondary-fixed": "#23005c",
+                    "inverse-on-surface": "#313031",
+                    "tertiary": "#ffb599",
+                    "outline-variant": "#424655",
+                    "secondary-container": "#571bc1",
+                    "on-tertiary": "#5a1c00",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#00429c",
+                    "primary": "#b0c6ff",
+                    "on-surface-variant": "#c2c6d8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "margin-desktop": "48px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "body-md": ["Inter"],
+                    "display-lg-mobile": ["Geist"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container">
+<nav class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-sm transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-display-lg text-headline-md tracking-tighter text-on-surface dark:text-on-surface">
+            Aadith Software Labs
+        </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Platform</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="#services">Services</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="#portfolio">Work</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="#contact">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md px-4 py-2">Sign In</button>
+<button class="bg-primary text-on-primary font-bold px-6 py-2 rounded-lg hover:opacity-80 transition-opacity shadow-lg shadow-primary/20">Get Started</button>
+</div>
+</div>
+</nav>
+<main class="relative pt-32 pb-24 px-margin-desktop overflow-hidden hero-gradient min-h-screen flex items-center">
+<canvas id="particle-canvas"></canvas>
+<div class="ambient-mesh"></div>
+<div class="glow-sphere top-1/4 left-1/4"></div>
+<div class="glow-sphere bottom-1/4 right-1/3 bg-secondary"></div>
+<div class="max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="flex flex-col gap-8" id="hero-content">
+<div class="reveal-up flex items-center gap-2 px-3 py-1 rounded-full border border-outline-variant bg-surface-container-low w-fit" style="transition-delay: 100ms;">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-label-sm font-label-sm text-primary uppercase tracking-widest">New: AI-Powered Orchestration</span>
+</div>
+<h1 class="reveal-up font-display-lg text-display-lg text-on-surface max-w-xl" style="transition-delay: 200ms;">
+                The future of <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">software development</span> is here.
+            </h1>
+<p class="reveal-up font-body-lg text-body-lg text-on-surface-variant max-w-lg" style="transition-delay: 300ms;">
+                Build, scale, and monitor mission-critical applications with a developer platform designed for high-velocity teams. Ship faster with Aadith Software Labs.
+            </p>
+<div class="reveal-up flex flex-wrap gap-4 mt-4" style="transition-delay: 400ms;">
+<button class="bg-primary text-on-primary font-bold text-body-md font-body-md px-8 py-4 rounded-xl shadow-xl shadow-primary/20 hover:scale-[1.05] active:scale-95 transition-all flex items-center gap-2 group">
+                    Get Started
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="glass-card text-on-surface font-bold text-body-md font-body-md px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 active:scale-95 transition-all">
+                    Book a Demo
+                </button>
+</div>
+<div class="reveal-up flex items-center gap-8 mt-12 pt-8 border-t border-white/5" style="transition-delay: 500ms;">
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md text-on-surface">99.9%</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">UPTIME SLA</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md text-on-surface">2.4ms</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">AVG LATENCY</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md text-on-surface">50k+</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">ACTIVE DEVS</span>
+</div>
+</div>
+</div>
+<div class="relative h-[600px] flex items-center justify-center lg:justify-end opacity-0 translate-x-[20px] transition-all duration-1000 ease-out delay-300" id="hero-visuals">
+<div class="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
+<div class="w-full h-1/2 opacity-20 transform -rotate-12 bg-gradient-to-r from-transparent via-primary to-transparent blur-3xl"></div>
+</div>
+<div class="absolute top-10 right-0 z-20 w-80 glass-card p-6 rounded-2xl animate-float">
+<div class="flex items-center justify-between mb-4">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-error"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">more_horiz</span>
+</div>
+<div class="space-y-3">
+<div class="h-2 w-3/4 bg-white/10 rounded-full"></div>
+<div class="h-2 w-full bg-white/5 rounded-full"></div>
+<div class="pt-2 flex items-end gap-2 h-20">
+<div class="w-full bg-primary/40 rounded-t-sm h-[60%] animate-pulse"></div>
+<div class="w-full bg-primary/60 rounded-t-sm h-[85%]"></div>
+<div class="w-full bg-primary/30 rounded-t-sm h-[45%] animate-pulse"></div>
+<div class="w-full bg-primary rounded-t-sm h-[95%]"></div>
+<div class="w-full bg-primary/50 rounded-t-sm h-[70%]"></div>
+</div>
+<div class="flex justify-between text-[10px] text-on-surface-variant font-mono">
+<span>MON</span><span>WED</span><span>FRI</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-20 right-40 z-10 w-72 glass-card p-5 rounded-xl border-primary/20 animate-float-delayed">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-[20px]">terminal</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Deploy Script</span>
+</div>
+<div class="font-mono text-[12px] space-y-1.5 text-on-primary-fixed-variant">
+<div class="flex gap-2"><span class="text-tertiary">const</span> <span class="text-primary">app</span> = <span class="text-secondary">init</span>();</div>
+<div class="flex gap-2"><span class="text-primary">app</span>.<span class="text-secondary">deploy</span>({</div>
+<div class="flex gap-2 pl-4">region: <span class="text-tertiary">'us-east'</span>,</div>
+<div class="flex gap-2 pl-4">scaling: <span class="text-tertiary">'auto'</span></div>
+<div class="flex gap-2">});</div>
+</div>
+</div>
+<div class="relative w-80 h-80 rounded-full flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+<div class="relative w-64 h-64 border border-white/10 rounded-full flex items-center justify-center p-8">
+<div class="w-full h-full border-2 border-dashed border-primary/30 rounded-full animate-[spin_30s_linear_infinite]"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[64px] animate-pulse" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+</div>
+</div>
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-secondary rounded-full shadow-[0_0_15px_rgba(208,188,255,1)]"></div>
+<div class="absolute bottom-10 right-0 w-2 h-2 bg-primary rounded-full shadow-[0_0_10px_rgba(176,198,255,1)]"></div>
+</div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-56 glass-card p-4 rounded-xl border-secondary/20 animate-float">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary p-[1px]">
+<div class="w-full h-full rounded-full bg-surface-container overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaNfslww8ndRAL51NeKEP95AzyNJoX2-xOWhBoz72SNjv9RpSL5WW6PooZL7y5zZzXG7nE0hg9SRNd18oQSVZYe2Za0twGBdnrmTrTWz4kN5vCFxCWrcpymgckw308RWtTcm6_WOHxNaG4ckdJpuhWj7kUCRnCiGCP0xeiN48Woxli-kgH_Ff4xidhU01d_t0wTJzPPpgT9CFoZnSc6Cl4DY77T6LXAL0vTd-rrNLekOQyl9d2EjMloDaLPrX7lz_6tiAS6H43EVQ"/>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-bold text-on-surface">Alex Rivera</span>
+<span class="text-[10px] text-primary">Chief Architect</span>
+</div>
+</div>
+<div class="mt-3 py-2 px-3 rounded-lg bg-white/5 border border-white/5">
+<span class="text-[10px] text-on-surface-variant italic">"Platform integration completed in 15min"</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<section class="max-w-container-max mx-auto px-margin-desktop py-12 border-t border-white/5 reveal-up">
+<p class="text-center text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest mb-10">Trusted by modern engineering teams worldwide</p>
+<div class="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex items-center gap-2 font-display-lg text-body-lg font-bold hover:text-primary cursor-default transition-colors">
+<span class="material-symbols-outlined">cloud</span> CloudCore
+        </div>
+<div class="flex items-center gap-2 font-display-lg text-body-lg font-bold hover:text-secondary cursor-default transition-colors">
+<span class="material-symbols-outlined">token</span> Finly
+        </div>
+<div class="flex items-center gap-2 font-display-lg text-body-lg font-bold hover:text-tertiary cursor-default transition-colors">
+<span class="material-symbols-outlined">data_object</span> Scriptify
+        </div>
+<div class="flex items-center gap-2 font-display-lg text-body-lg font-bold hover:text-primary cursor-default transition-colors">
+<span class="material-symbols-outlined">auto_awesome</span> NovaAI
+        </div>
+<div class="flex items-center gap-2 font-display-lg text-body-lg font-bold hover:text-secondary cursor-default transition-colors">
+<span class="material-symbols-outlined">security</span> GuardLink
+        </div>
+</div>
+</section>
+<section class="max-w-container-max mx-auto px-margin-desktop py-24 relative" id="services">
+<div class="glow-sphere top-0 right-0 bg-primary opacity-5"></div>
+<div class="text-center mb-16 reveal-up">
+<h2 class="font-display-lg text-headline-md text-on-surface mb-4">Our Services</h2>
+<div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="glass-card service-card p-8 rounded-xl flex flex-col items-center text-center reveal-up" style="transition-delay: 100ms;">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-[32px]">code</span>
+</div>
+<h3 class="font-headline-md text-[24px] text-on-surface mb-4">Software Development</h3>
+<p class="text-on-surface-variant font-body-md">Transforming ideas into robust and intuitive software applications that drive digital success.</p>
+</div>
+<div class="glass-card service-card p-8 rounded-xl flex flex-col items-center text-center reveal-up" style="transition-delay: 200ms;">
+<div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary text-[32px]">bug_report</span>
+</div>
+<h3 class="font-headline-md text-[24px] text-on-surface mb-4">Quality Engineering</h3>
+<p class="text-on-surface-variant font-body-md">Ensuring flawless performance and exceptional user experience through meticulous software quality engineering.</p>
+</div>
+<div class="glass-card service-card p-8 rounded-xl flex flex-col items-center text-center reveal-up" style="transition-delay: 300ms;">
+<div class="w-16 h-16 rounded-full bg-tertiary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary text-[32px]">campaign</span>
+</div>
+<h3 class="font-headline-md text-[24px] text-on-surface mb-4">Digital Marketing</h3>
+<p class="text-on-surface-variant font-body-md">Empowering businesses to reach, engage and convert target audience through strategic marketing solutions.</p>
+</div>
+<div class="glass-card service-card p-8 rounded-xl flex flex-col items-center text-center reveal-up" style="transition-delay: 400ms;">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-[32px]">smartphone</span>
+</div>
+<h3 class="font-headline-md text-[24px] text-on-surface mb-4">Mobile Development</h3>
+<p class="text-on-surface-variant font-body-md">Crafting immersive and user-centric mobile experiences that redefine the way we interact with technology.</p>
+</div>
+<div class="glass-card service-card p-8 rounded-xl flex flex-col items-center text-center reveal-up" style="transition-delay: 500ms;">
+<div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary text-[32px]">cloud_queue</span>
+</div>
+<h3 class="font-headline-md text-[24px] text-on-surface mb-4">Cloud Services</h3>
+<p class="text-on-surface-variant font-body-md">Unlocking the power of scalability, flexibility and reliability through comprehensive cloud services for business.</p>
+</div>
+<div class="glass-card service-card p-8 rounded-xl flex flex-col items-center text-center reveal-up" style="transition-delay: 600ms;">
+<div class="w-16 h-16 rounded-full bg-tertiary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary text-[32px]">palette</span>
+</div>
+<h3 class="font-headline-md text-[24px] text-on-surface mb-4">UI/UX Design</h3>
+<p class="text-on-surface-variant font-body-md">Designing intuitive interfaces that captivate users and provide seamless, delightful digital experiences.</p>
+</div>
+</div>
+</section>
+<section class="max-w-container-max mx-auto px-margin-desktop py-24 border-t border-white/5" id="portfolio">
+<div class="text-center mb-16 reveal-up">
+<h2 class="font-display-lg text-headline-md text-on-surface mb-4">Featured Work</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">A glimpse into the high-performance solutions we've engineered for global innovators.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 portfolio-grid">
+<div class="portfolio-card group glass-card overflow-hidden rounded-2xl reveal-scale" style="transition-delay: 100ms;">
+<div class="aspect-video relative overflow-hidden bg-surface-container">
+<img alt="FinTech Dashboard" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo6NXx8dA5DoyEn67BoNBJiZIdY9MXXNfBjj_862ge_bNI3oUh36N0K7YEbOODt39c7dRXQLLMxTfwB5wqtBMnBxNeYMC_FP1L6RKTuXTedO8s-aJVjUsAQtB2mJTtkrsRxUF8e1PnEcMuIYSHH4FJ9kRlAVdHuArTw91wbEIohKt5z--rvXOA9Yv8iWMSWVE48VdqZhXwBvA-Pf3EBlcBCdnblXJqNBFU1gEXDPGIzJVpitSxRbMpMeZ6wPNqPM-oejnjBmUYs2I"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-6">
+<span class="px-3 py-1 bg-primary text-on-primary rounded-full text-label-sm font-label-sm uppercase tracking-wider mb-2 inline-block">FinTech</span>
+<h3 class="font-headline-md text-on-surface">NeoBank Alpha</h3>
+</div>
+</div>
+<div class="p-6">
+<p class="text-on-surface-variant mb-4">Scalable cloud-native banking infrastructure processing $10M+ daily transactions with sub-second latency.</p>
+<a class="text-primary flex items-center gap-2 font-bold hover:underline" href="#">View Case Study <span class="material-symbols-outlined text-[18px]">arrow_outward</span></a>
+</div>
+</div>
+<div class="portfolio-card group glass-card overflow-hidden rounded-2xl reveal-scale" style="transition-delay: 300ms;">
+<div class="aspect-video relative overflow-hidden bg-surface-container">
+<img alt="Cloud Infrastructure" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyYhNXKsNJm_hUsMLLfVlhXyrVKZnv5Pdys73kcQ1vU2P-0DO60E60emcrTAh0oKBW_PjbyHpfUTHU3EcKUJ70bILYjkAaZ5gpxny82FMDMY2lQXEsqy1nAt43wbW3F6rBy7xHeiA1vVtAw0FdIM2Ia0gpdPscVUVwLCI3c0lQOurZZ59GyQK-GMvg4yNGC0vwpqDMbDGmfTRBTU3Na4OS3l_nLX9suZIaYpNcqpFUUGlvfBxyRE7Jy8k8o6RfwYQcgyR1FwS89Zo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-6">
+<span class="px-3 py-1 bg-secondary text-on-secondary rounded-full text-label-sm font-label-sm uppercase tracking-wider mb-2 inline-block">Infrastructure</span>
+<h3 class="font-headline-md text-on-surface">CloudMesh Enterprise</h3>
+</div>
+</div>
+<div class="p-6">
+<p class="text-on-surface-variant mb-4">AI-driven multi-cloud orchestration platform reducing infrastructure costs by 40% for Fortune 500 clients.</p>
+<a class="text-secondary flex items-center gap-2 font-bold hover:underline" href="#">View Case Study <span class="material-symbols-outlined text-[18px]">arrow_outward</span></a>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-container-max mx-auto px-margin-desktop py-24 mb-12" id="contact">
+<div class="glass-card rounded-[32px] overflow-hidden flex flex-col lg:flex-row relative reveal-up">
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/20 blur-[100px] rounded-full"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/20 blur-[100px] rounded-full"></div>
+<div class="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center">
+<h2 class="font-display-lg text-display-lg-mobile lg:text-headline-md text-on-surface mb-6">Get in Touch</h2>
+<p class="text-body-lg text-on-surface-variant mb-12">Have a project in mind? Let's discuss how Aadith Software Labs can accelerate your engineering roadmap.</p>
+<div class="space-y-6">
+<div class="flex items-center gap-4 animate-float">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">mail</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">Email Us</p>
+<p class="text-on-surface font-bold">hello@aadithlabs.io</p>
+</div>
+</div>
+<div class="flex items-center gap-4 animate-float-delayed">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">Our Office</p>
+<p class="text-on-surface font-bold">Tech Plaza, Silicon Valley, CA</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 p-12 lg:p-20 bg-white/5 border-l border-white/10 backdrop-blur-sm">
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="text-label-sm text-on-surface-variant font-label-sm uppercase tracking-widest">Your Name</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm text-on-surface-variant font-label-sm uppercase tracking-widest">Email Address</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline" placeholder="john@company.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm text-on-surface-variant font-label-sm uppercase tracking-widest">Message</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-4 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline" placeholder="Tell us about your project..." rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-bold py-4 rounded-xl shadow-xl shadow-primary/20 hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-2 group btn-pulse" type="submit">
+                    Send Message
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
+</button>
+</form>
+</div>
+</div>
+</section>
+<footer class="w-full py-12 bg-background dark:bg-background border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-8">
+<div class="font-display-lg text-body-lg font-bold text-on-surface">
+            Aadith Software Labs
+        </div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Security</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Contact</a>
+</div>
+<div class="text-on-surface-variant font-body-md text-body-md">
+            © 2024 Aadith Software Labs. All rights reserved.
+        </div>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const visuals = document.getElementById('hero-visuals');
+        const revealUpElements = document.querySelectorAll('.reveal-up');
+        const revealScaleElements = document.querySelectorAll('.reveal-scale');
+
+        // Combined Reveal entrance animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        revealUpElements.forEach((el) => observer.observe(el));
+        revealScaleElements.forEach((el) => observer.observe(el));
+
+        // Hero visuals entrance specifically
+        setTimeout(() => {
+            if(visuals) {
+                visuals.classList.remove('opacity-0', 'translate-x-[20px]');
+                visuals.classList.add('opacity-100', 'translate-x-0');
+            }
+        }, 600);
+
+        // Particle background effect
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initParticles() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    opacity: Math.random() * 0.5 + 0.2
+                });
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+
+                ctx.fillStyle = `rgba(176, 198, 255, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+        window.addEventListener('resize', initParticles);
+
+        // Enhanced 3D Tilt for Service Cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Gentler, smoother rotation
+                const rotateX = (y - centerY) / 12;
+                const rotateY = (centerX - x) / 12;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
+            });
+        });
+
+        // Global Mouse Interaction for ambient parallax elements
+        document.addEventListener('mousemove', (e) => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            const moveElements = document.querySelectorAll('.animate-float, .animate-float-delayed');
+            moveElements.forEach((el, index) => {
+                const speed = (index + 1) * 12;
+                if (!el.matches(':hover')) {
+                    el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+                }
+            });
+
+            const mesh = document.querySelector('.ambient-mesh');
+            if (mesh) {
+                mesh.style.transform = `translate(${x * 8}px, ${y * 8}px) scale(1.05)`;
+            }
+
+            const glows = document.querySelectorAll('.glow-sphere');
+            glows.forEach((g, i) => {
+                const factor = (i + 1) * 4;
+                g.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+            });
+        });
+    });
+</script>
+</body></html>
